@@ -1,8 +1,13 @@
 import { Button } from "./styles";
 import { Link } from "react-router-dom";
-const Botao = () => {
+
+type Props = {
+  id: number;
+};
+
+const Botao = ({ id }: Props) => {
   return (
-    <Link to="/restaurantes">
+    <Link to={`restaurantes/${id}`}>
       <Button>Saiba mais</Button>
     </Link>
   );

@@ -13,7 +13,7 @@ export const CardContainer = styled.div`
   img {
     max-width: 100%;
     max-height: 217px;
-    image-rendering: pixelated;
+    object-fit: cover;
   }
   
   div{

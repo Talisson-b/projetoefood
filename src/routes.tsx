@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound";
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/restaurantes" element={<Restaurante />} />
+    <Route path="/restaurantes/:id" element={<Restaurante />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

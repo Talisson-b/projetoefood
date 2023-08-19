@@ -1,4 +1,4 @@
-import Fotter from "./components/Footer";
+// import Fotter from "./components/Footer";
 import Rotas from "./routes";
 import { GlobalCss } from "./style";
 import { BrowserRouter } from "react-router-dom";
@@ -10,7 +10,6 @@ function App() {
         <GlobalCss />
         <Rotas />
       </BrowserRouter>
-      <Fotter />
     </>
   );
 }

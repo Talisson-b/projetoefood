@@ -1,22 +1,18 @@
-import CardRestaurtant from "../../components/CardRestaurant"
-import { Container } from "./style"
-import Banners from "../../components/Banner"
+import CardRestaurtant from "../../components/CardRestaurant";
+
+export function formataPreco(preco = 0) {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(preco);
+}
 
 const Restaurante = () => {
   return (
-      <>
-    <Banners />
-    <Container className="container">
+    <>
       <CardRestaurtant />
-      <CardRestaurtant />
-      <CardRestaurtant />
-      <CardRestaurtant />
-      <CardRestaurtant />
-      <CardRestaurtant />
+    </>
+  );
+};
 
-    </Container>
-      </>
-  )
-}
-
-export default Restaurante
+export default Restaurante;

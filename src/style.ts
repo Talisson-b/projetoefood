@@ -16,7 +16,18 @@ export const GlobalCss = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     list-style: none;
-    text-decoration: none; 
+    text-decoration: none;
+
+  a:link {
+  color: inherit; /* Herda a cor do elemento pai */
+  text-decoration: none; /* Remove o sublinhado padrão */
+  }
+
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
   }
 
   body {

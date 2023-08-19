@@ -9,10 +9,23 @@ import {
   SubTitle,
 } from "./styles";
 import background from "../../assets/images/backgroud.svg";
-import bannerRestaurante from "../../assets/images/imgrestaurante.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { PropsRestaurante } from "../../pages/Home";
+import { useEffect, useState } from "react";
 
 const Banners = () => {
+  const [restaurantes, setRestaurantes] = useState<PropsRestaurante | null>(
+    null
+  );
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((json) => setRestaurantes(json));
+  }, []);
+  if (!restaurantes) {
+    return <h3>Carregando...</h3>;
+  }
   return (
     <>
       <ContainerBackgroud
@@ -22,11 +35,9 @@ const Banners = () => {
       >
         <ContainerHeader className="container">
           <Link to="/">
-            {" "}
             <SubTitle>Restaurantes</SubTitle>
           </Link>
           <Link to="/">
-            {" "}
             <Imagem src={logo} alt="EFOOD" />
           </Link>
           <SubTitle>0 produto(s) no carrinho</SubTitle>
@@ -34,12 +45,12 @@ const Banners = () => {
       </ContainerBackgroud>
       <Background
         style={{
-          backgroundImage: `url(${bannerRestaurante})`,
+          backgroundImage: `url(${restaurantes.capa})`,
         }}
       >
         <ContainerTitle>
-          <p>Italiana</p>
-          <Title>La Dolce Vita Trattoria</Title>
+          <p>{restaurantes.tipo}</p>
+          <Title>{restaurantes.titulo}</Title>
         </ContainerTitle>
       </Background>
     </>

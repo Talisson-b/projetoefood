@@ -13,6 +13,7 @@ export const ContainerFooter = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+ 
 
   img {
     width: 125px;
