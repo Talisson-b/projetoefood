@@ -1,4 +1,3 @@
-import { PropsRestaurante } from "../../pages/Home";
 import { getDescription } from "../Card";
 import {
   Container,
@@ -7,12 +6,14 @@ import {
   Description,
   Titulo,
 } from "./styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Fotter from "../Footer";
 import Banners from "../Banner";
 import Modals from "../Modal";
-
+import { useGetRestauranteQuery } from "../../services/api";
+import { add, open } from "../../store/reducers/cart";
+import { useDispatch } from "react-redux";
 export type PratoProps = {
   foto: string;
   preco: number;
@@ -23,12 +24,16 @@ export type PratoProps = {
 };
 
 const CardRestaurtant = () => {
-  // const [modalAtivo, setModalAtivo] = useState(false);
-  const [restaurante, setRestaurante] = useState<PropsRestaurante | null>(null);
   const { id } = useParams();
   const [visivel, setVisivel] = useState(false);
-  // const [overlay, setOverlay] = useState(false);
   const [pratoId, setPratoId] = useState<PratoProps | null>(null);
+  const { data: restaurante } = useGetRestauranteQuery(id);
+  const dispatch = useDispatch();
+
+  function addToCart(prato: PratoProps) {
+    dispatch(add(prato));
+    dispatch(open());
+  }
 
   function ativarModal(prato: PratoProps) {
     setVisivel(true);
@@ -38,12 +43,6 @@ const CardRestaurtant = () => {
   function desativarModal() {
     setVisivel(false);
   }
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((json) => setRestaurante(json));
-  }, [id]);
 
   if (!restaurante) {
     return <h3>Carregando...</h3>;
@@ -56,14 +55,15 @@ const CardRestaurtant = () => {
           <Banners />
           <ContainerGrid className="container">
             {restaurante.cardapio.map((prato) => (
-              <ContainerCard
-                onClick={() => ativarModal(prato)}
-                key={prato.nome}
-              >
-                <img src={prato.foto} alt={prato.nome} />
-                <Titulo>{prato.nome}</Titulo>
-                <Description>{getDescription(prato.descricao)}</Description>
-                <button>Adicionar ao carrinho</button>
+              <ContainerCard key={prato.id}>
+                <div onClick={() => ativarModal(prato)} key={prato.nome}>
+                  <img src={prato.foto} alt={prato.nome} />
+                  <Titulo>{prato.nome}</Titulo>
+                  <Description>{getDescription(prato.descricao)}</Description>
+                </div>
+                <button onClick={() => addToCart(prato)}>
+                  Adicionar ao carrinho
+                </button>
               </ContainerCard>
             ))}
           </ContainerGrid>

@@ -27,7 +27,7 @@ const Card = ({ restaurantes }: Props) => {
   return (
     <>
       {restaurantes.map((restaurante) => (
-        <Link to={`/restaurantes/${restaurante.id}`}>
+        <Link to={`/restaurantes/${restaurante.id}`} key={restaurante.id}>
           <CardContainer>
             <img src={restaurante.capa} alt="sushi" />
             <Tag>{restaurante.tipo}</Tag>

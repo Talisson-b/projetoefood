@@ -1,7 +1,8 @@
 import { Conteudo, ModalContainer, ModalContent } from "./styles";
 import { PratoProps } from "../CardRestaurant";
 import { formataPreco } from "../../pages/Restaurante";
-
+import { useDispatch } from "react-redux";
+import { add, open } from "../../store/reducers/cart";
 type PropsVisivel = {
   visivel: boolean;
   desativar: () => void;
@@ -9,6 +10,13 @@ type PropsVisivel = {
 };
 
 const Modals = ({ visivel, desativar, pratoId }: PropsVisivel) => {
+  const dispatch = useDispatch();
+
+  function addToCart() {
+    dispatch(add(pratoId!));
+    dispatch(open());
+  }
+
   if (!visivel) {
     return null;
   }
@@ -25,7 +33,7 @@ const Modals = ({ visivel, desativar, pratoId }: PropsVisivel) => {
           <h1>{pratoId?.nome}</h1>
           <p>{pratoId?.descricao}</p>
           <p>{pratoId?.porcao}</p>
-          <button>
+          <button onClick={addToCart}>
             Adicionar ao carrinho - {formataPreco(pratoId?.preco)}
           </button>
         </Conteudo>

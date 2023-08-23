@@ -1,10 +1,8 @@
 import Card from "../../components/Card";
 import { Container } from "./styles";
 import Header from "../../components/Header";
-import { useState, useEffect } from "react";
-
 import Fotter from "../../components/Footer";
-
+import { useGetRestaurantesQuery } from "../../services/api";
 export type PropsRestaurante = {
   id: number;
   titulo: number;
@@ -26,13 +24,8 @@ export type PropsRestaurante = {
 };
 
 const Home = () => {
-  const [restaurantes, setRestaurantes] = useState<PropsRestaurante[]>([]);
-
-  useEffect(() => {
-    fetch("https://fake-api-tau.vercel.app/api/efood/restaurantes")
-      .then((res) => res.json())
-      .then((json) => setRestaurantes(json));
-  }, []);
+  const { data: restaurantes } = useGetRestaurantesQuery();
+  console.log(restaurantes);
   if (!restaurantes) {
     return <h3>Carregando...</h3>;
   }

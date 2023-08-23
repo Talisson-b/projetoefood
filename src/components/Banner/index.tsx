@@ -12,17 +12,26 @@ import background from "../../assets/images/backgroud.svg";
 import { Link, useParams } from "react-router-dom";
 import { PropsRestaurante } from "../../pages/Home";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { open } from "../../store/reducers/cart";
+import { RootReducer } from "../../store";
 
 const Banners = () => {
   const [restaurantes, setRestaurantes] = useState<PropsRestaurante | null>(
     null
   );
+  const { items } = useSelector((state: RootReducer) => state.cart);
   const { id } = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
       .then((json) => setRestaurantes(json));
   }, []);
+
+  function addCart() {
+    dispatch(open());
+  }
   if (!restaurantes) {
     return <h3>Carregando...</h3>;
   }
@@ -40,7 +49,9 @@ const Banners = () => {
           <Link to="/">
             <Imagem src={logo} alt="EFOOD" />
           </Link>
-          <SubTitle>0 produto(s) no carrinho</SubTitle>
+          <SubTitle onClick={addCart}>
+            {items.length} produto(s) no carrinho
+          </SubTitle>
         </ContainerHeader>
       </ContainerBackgroud>
       <Background

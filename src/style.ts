@@ -1,13 +1,11 @@
-import { createGlobalStyle } from 'styled-components'
- 
+import { createGlobalStyle } from "styled-components";
+
 export const colors = {
-  primary: '#E66767',
-  bg: '#FFF8F2',
-  bgFotter: '#FFEBD9',
-  white: '#fff',
-
-
-}
+  primary: "#E66767",
+  bg: "#FFF8F2",
+  bgFotter: "#FFEBD9",
+  white: "#fff",
+};
 
 export const GlobalCss = createGlobalStyle`
   *{
@@ -41,6 +39,10 @@ export const GlobalCss = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
 
-  }
-`
+    @media (max-width: 768px) {
+    max-width: 90%;
 
+  }
+  }
+
+`;
