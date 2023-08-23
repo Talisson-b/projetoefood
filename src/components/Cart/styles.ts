@@ -34,6 +34,11 @@ export const SideBar = styled.aside`
   z-index: 1;
   padding-inline: 8px;
 
+  @media (max-width: 550px) {
+    max-width: 300px;
+    width: 100%;
+  }
+
   ul {
     margin-top: 32px;
   }

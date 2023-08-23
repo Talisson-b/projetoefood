@@ -15,6 +15,10 @@ export const ContainerBackgroud = styled.div`
 export const Imagem = styled.img`
   width: 125px;
   height: 57px;
+
+  @media (max-width: 550px) {
+    display: none;
+  }
 `;
 
 export const Background = styled.div`

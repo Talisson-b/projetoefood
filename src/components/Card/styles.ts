@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from '../../style'
+import styled from "styled-components";
+import { colors } from "../../style";
 
 export const CardContainer = styled.div`
   display: flex;
@@ -9,17 +9,16 @@ export const CardContainer = styled.div`
   margin-top: 80px;
   position: relative;
   min-height: 400px;
-  
+
   img {
     max-width: 100%;
     max-height: 217px;
     object-fit: cover;
   }
-  
-  div{
-    
+
+  div {
   }
-`
+`;
 
 export const HeaderTitle = styled.div`
   display: flex;
@@ -27,39 +26,31 @@ export const HeaderTitle = styled.div`
   align-items: center;
   padding: 8px;
 
-  
-
   span {
     font-weight: bold;
     font-size: 18px;
-    
   }
 
   img {
     width: 20px;
     height: 20px;
-    
   }
-`
+`;
 
 export const Title = styled.h3`
   font-size: 18px;
   font-weight: bold;
-`
-
+`;
 
 export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
-  margin-top: 8px;  
+  margin-top: 8px;
   padding: 8px;
   height: 88px;
-
-
-  
-`
+`;
 
 export const Assessment = styled.div`
   display: flex;
   column-gap: 8px;
-`
+`;

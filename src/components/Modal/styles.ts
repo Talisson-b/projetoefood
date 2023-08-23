@@ -23,6 +23,13 @@ export const ModalContent = styled.div`
   position: fixed;
   display: flex;
 
+  @media (max-width: 550px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   h1,
   p {
     margin-bottom: 16px;
@@ -37,6 +44,10 @@ export const ModalContent = styled.div`
 
 export const Conteudo = styled.div`
   position: relative;
+
+  @media (max-width: 550px) {
+    position: static;
+  }
 
   h1 {
     font-size: 18px;
@@ -54,6 +65,11 @@ export const Conteudo = styled.div`
     position: absolute;
     top: -30px;
     right: -25px;
+
+    @media (max-width: 550px) {
+      top: 0;
+      right: 10px;
+    }
   }
 
   p {
